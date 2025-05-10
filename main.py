@@ -1,5 +1,6 @@
 import pygame
 import constantes
+from weapon import Weapon
 from personaje import Personaje
 
 #Inicilaizamos pygame 
@@ -25,7 +26,14 @@ for i in range (3):
     img = escalar_img(img, constantes.ESCALA_PERSONAJE)
     animaciones.append(img)
 
+#Arma
+imagen_pistola = pygame.image.load("assets//images//weapons//pistol.png")
+imagen_pistola = escalar_img(imagen_pistola, constantes.ESCALA_ARMA)
+
 jugador  = Personaje(50, 50, animaciones)
+
+#Crear un arma
+pistola = Weapon(imagen_pistola)
 
 #Definir movimeinto del jugador 
 mover_arriba = False
@@ -62,11 +70,17 @@ while run:
     #Invoca la funcion de movimiento 
     jugador.movimiento(delta_x, delta_y)
 
+    #Actualiza el estado del jugador
     jugador.update()
+
+    #actualiza el estado del arma
+    pistola.update(jugador)
 
     #Pintar el jugador en ventana
     jugador.dibujar(ventana)
 
+    #Pinta el arma
+    pistola.dibujar(ventana)
    
 
     #For de update y persistencia de venytana

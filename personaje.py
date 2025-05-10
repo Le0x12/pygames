@@ -13,7 +13,7 @@ class Personaje():
         self.image = animaciones[self.frame_index]
         #------------------------------------------
         self.image = animaciones[0]
-        self.forma = pygame.Rect(0, 0, constantes.ALTO_PERSONAJE, constantes.ANCHO_PERSONAJE)
+        self.forma = self.image.get_rect()
         self.forma.center = (x, y)
 
     #Dibuja al personaje forma y color
