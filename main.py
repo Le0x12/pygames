@@ -30,10 +30,17 @@ for i in range (3):
 imagen_pistola = pygame.image.load("assets//images//weapons//pistol.png")
 imagen_pistola = escalar_img(imagen_pistola, constantes.ESCALA_ARMA)
 
+#Balas
+imagen_balas = pygame.image.load(f"assets//images//weapons//bullet.png").convert_alpha()
+imagen_balas = escalar_img(imagen_balas, constantes.ESCALA_ARMA)
+
 jugador  = Personaje(50, 50, animaciones)
 
 #Crear un arma
-pistola = Weapon(imagen_pistola)
+pistola = Weapon(imagen_pistola, imagen_balas)
+
+#Crear un grupo de Sprites
+grupo_balas = pygame.sprite.Group()
 
 #Definir movimeinto del jugador 
 mover_arriba = False
@@ -74,13 +81,21 @@ while run:
     jugador.update()
 
     #actualiza el estado del arma
-    pistola.update(jugador)
+    bala = pistola.update(jugador)
+    if bala:
+        grupo_balas.add(bala)
+    for bala in grupo_balas:
+        bala.update()
 
     #Pintar el jugador en ventana
     jugador.dibujar(ventana)
 
     #Pinta el arma
     pistola.dibujar(ventana)
+
+    #dibujar balas
+    for bala in grupo_balas:
+        bala.dibujar(ventana)
    
 
     #For de update y persistencia de venytana

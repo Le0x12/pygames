@@ -15,9 +15,13 @@ FPS = 60
 
 #Velocidad del juagdor en px
 VELOCIDAD = 15
+VELOCIDAD_BALA = 45
 
 #Escala del personaje
 ESCALA_PERSONAJE = 0.3
 
 #Escalal de arma
 ESCALA_ARMA = 0.09
+
+#Velocidad de balas
+COOLDOWN_BALAS = 500
